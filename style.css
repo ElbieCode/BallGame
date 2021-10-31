@@ -1,0 +1,11 @@
+canvas {
+    float:left;
+    display: block;
+    margin: 0 auto;
+    border: 1px solid black;
+}
+
+table {
+    text-align: center;
+    border: 1px solid black;
+}
