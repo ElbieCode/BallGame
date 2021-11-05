@@ -30,7 +30,6 @@ function timerCycle() {
             minutes = '0' + minutes
         }
     }
- 
     drawTimer()
 }
-let timer = setInterval(timerCycle,10)
+let timer = setInterval(timerCycle, 10)

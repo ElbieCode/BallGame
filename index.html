@@ -11,13 +11,30 @@
 
 <body>
     <canvas id="gameCanvas" width="800" height="900"></canvas>
-    <table>
-        <tr><th>HOW TO PLAY:</th></tr>
-        <tr><td>Use W,A,S,D keys or Arrow keys to move player</td></tr>
-        <tr><td>Dodge all the yellow balls</td></tr>
-        <tr><td>GOAL: Consume all red balls before they make too much clone</td></tr>
-        <tr><td>Tip: F5 to restart</td></tr>
+    <table id="instruction">
+        <tr>
+            <th>HOW TO PLAY:</th>
+        </tr>
+        <tr>
+            <td>Use W,A,S,D keys or Arrow keys to move player</td>
+        </tr>
+        <tr>
+            <td>Dodge all the yellow clones</td>
+        </tr>
+        <tr>
+            <td>Eat all the red balls</td>
+        </tr>
+        <tr>
+            <td>When all the red balls are eaten, you can eat the clones</td>
+        </tr>
+        <tr>
+            <td>GOAL: Consume all ball</td>
+        </tr>
+        <tr>
+            <td>Tip: F5 to restart</td>
+        </tr>
     </table>
+
     <script src="js/firstBall.js"></script>
     <script src="js/cloneBall.js"></script>
     <script src="js/player.js"></script>
