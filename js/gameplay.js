@@ -24,50 +24,6 @@ let ballLeft = numberOfFirstBall
 //so luong nhan ban con lai
 let cloneLeft = 0
 
-//xu li su kien nha phim
-window.addEventListener('keyup', (event) => {
-    if (event.key === 'ArrowDown' || event.key === 's') {
-        plr.isMovingDown = false
-        clearInterval(gamePlay)
-    }
-    else if (event.key === 'ArrowUp' || event.key === 'w') {
-        plr.isMovingUp = false
-    }
-    else if (event.key === 'ArrowLeft' || event.key === 'a') {
-        plr.isMovingLeft = false
-    }
-    else if (event.key === 'ArrowRight' || event.key === 'd') {
-        plr.isMovingRight = false
-    }
-})
-
-//xu li su kien nhan phim
-window.addEventListener('keydown', (event) => {
-    if (event.key === 'ArrowDown' || event.key === 's') {
-        plr.isMovingDown = true
-    }
-    else if (event.key === 'ArrowUp' || event.key === 'w') {
-        plr.isMovingUp = true
-    }
-    else if (event.key === 'ArrowLeft' || event.key === 'a') {
-        plr.isMovingLeft = true
-    }
-    else if (event.key === 'ArrowRight' || event.key === 'd') {
-        plr.isMovingRight = true
-    }
-})
-
-//ve ban choi
-function drawBoard() {
-    ctx.fillStyle = '#2E282A'
-    ctx.fillRect(0, 0, gameCanvas.width, gameCanvas.height)
-}
-//ve bang du lieu
-function drawScoreBoard() {
-    ctx.fillStyle = '#2E283A'
-    ctx.fillRect(0, 800, scoreBoard.width, scoreBoard.height)
-}
-
 //tao bong
 function makeOriginalBalls() {
     for (let i = 0; i < numberOfFirstBall; i++) {
@@ -101,28 +57,18 @@ function renderClone() {
 //ve nguoi choi
 function renderPlayer() {
     plr.drawPlayer()
+    plr.move()
+}
 
-    //di chuyen nguoi choi
-    if (plr.isMovingUp) {
-        plr.y -= plr.speed
-    } else if (plr.isMovingDown) {
-        plr.y += plr.speed
-    } else if (plr.isMovingLeft) {
-        plr.x -= plr.speed
-    } else if (plr.isMovingRight) {
-        plr.x += plr.speed
-    }
-
-    //xu li su kien nguoi choi di qua bien
-    if (plr.x < 0) {
-        plr.x = 0
-    } else if (plr.x + plr.width > gameCanvas.width) {
-        plr.x = gameCanvas.width - plr.width
-    } else if (plr.y + plr.height > gameCanvas.height - scoreBoard.height) {
-        plr.y = gameCanvas.height - plr.height - scoreBoard.height
-    } else if (plr.y < 0) {
-        plr.y = 0
-    }
+//ve ban choi
+function drawBoard() {
+    ctx.fillStyle = '#2E282A'
+    ctx.fillRect(0, 0, gameCanvas.width, gameCanvas.height)
+}
+//ve bang du lieu
+function drawScoreBoard() {
+    ctx.fillStyle = '#2E283A'
+    ctx.fillRect(0, 800, scoreBoard.width, scoreBoard.height)
 }
 
 //ve dong ho
@@ -136,7 +82,7 @@ function drawTimer() {
 function drawNumberOfBallLeft() {
     ctx.fillStyle = '#CD5334'
     ctx.font = '30px sans-serif'
-    ctx.fillText('Ball left: ' + ballLeft, gameCanvas.width - 150, gameCanvas.height - scoreBoard.height / 2 + 15)
+    ctx.fillText('Red Ball left: ' + ballLeft, gameCanvas.width - 210, gameCanvas.height - scoreBoard.height / 2 + 15)
 }
 
 //ve so nhan ban con lai
@@ -146,15 +92,49 @@ function drawNumberOfClonesLeft() {
     ctx.fillText('Clones left: ' + cloneLeft, gameCanvas.width / 2 - 100, gameCanvas.height - scoreBoard.height / 2 + 15)
 }
 
+//xu li su kien nha phim
+window.addEventListener('keyup', (event) => {
+    if (event.key === 'ArrowDown' || event.key === 's') {
+        plr.isMovingDown = false
+        clearInterval(gamePlay)
+    }
+    else if (event.key === 'ArrowUp' || event.key === 'w') {
+        plr.isMovingUp = false
+    }
+    else if (event.key === 'ArrowLeft' || event.key === 'a') {
+        plr.isMovingLeft = false
+    }
+    else if (event.key === 'ArrowRight' || event.key === 'd') {
+        plr.isMovingRight = false
+    }
+})
+
+//xu li su kien nhan phim
+window.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowDown' || event.key === 's') {
+        plr.isMovingDown = true
+    }
+    else if (event.key === 'ArrowUp' || event.key === 'w') {
+        plr.isMovingUp = true
+    }
+    else if (event.key === 'ArrowLeft' || event.key === 'a') {
+        plr.isMovingLeft = true
+    }
+    else if (event.key === 'ArrowRight' || event.key === 'd') {
+        plr.isMovingRight = true
+    }
+})
+
+
 //kiem tra trang thai ket thuc
 function checkGameEnd() {
     if (ballLeft == 0 && cloneLeft == 0) {
         isGameOver = true
     }
 
-    if(isGameOver) {
+    if (isGameOver) {
         if (ballLeft == 0) {
-            if (cloneLeft ==0) {
+            if (cloneLeft == 0) {
                 gameEnd('Won')
             } else {
                 gameEnd('Lost')
